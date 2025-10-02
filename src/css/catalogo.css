@@ -1,0 +1,270 @@
+/* Definição de Cores - Manter Paleta */
+:root {
+    --primary-red: #da291c; /* Vermelho McDonald's/Ação */
+    --secondary-yellow: #ffc72c; /* Amarelo Lançamentos */
+    --text-dark: #1a1a1a;
+    --text-light: #666666;
+    --bg-light: #f7f7f7;
+    --bg-white: #ffffff;
+    --border-light: #e0e0e0;
+    --font-family: 'Poppins', sans-serif; 
+}
+
+body {
+    font-family: var(--font-family)
+}
+
+/* Banner e Overlay */
+.store-banner {
+    width: 100%;
+    height: 150px;
+    /* Use a URL da sua imagem (ou a que funciona localmente) */
+    background-image: url(' https://br.kiris5030.com.br/~fresh3772/wp-content/uploads/2023/04/Shoppings-Compras-em-Orlando-15.jpg'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    /* Não tem border-radius no topo, apenas o card flutua */
+}
+
+.store-banner::before { 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25); /* Overlay mais suave */
+    z-index: 1; 
+}
+
+/* Ícone da Sacola (Topo Direito) */
+.cart-icon-absolute {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 22px;
+    color: var(--bg-white);
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+}
+
+/* Card Flutuante de Detalhes */
+.store-details-card {
+    position: relative; /* Mudamos para 'relative' para que o card se posicione naturalmente no fluxo */
+    /* Usaremos margin-top negativo para puxá-lo para cima do banner */
+    margin: -40px 15px 0 15px; /* Puxa 40px para cima do banner, e margem lateral de 15px */
+    background-color: var(--bg-white);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    z-index: 5;
+}
+
+.store-logo-placeholder {
+    width: 45px;
+    height: 45px;
+    /* Imita a cor do logo do McDonald's, mas usa o texto FSW */
+    background-color: var(--primary-red); 
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.logo-fsw-small {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--bg-white); /* Texto do logo FSW em branco */
+}
+
+.store-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.store-category {
+    font-size: 13px;
+    color: var(--text-light);
+    margin: 2px 0;
+}
+
+.store-status {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.open-icon {
+    color: #28a745; /* Verde de Aberto */
+    margin-right: 5px;
+}
+
+.store-rating {
+    display: flex;
+    align-items: center;
+    /* Estilo muito fiel ao mockup: sem borda, apenas texto */
+    padding: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-left: auto; /* Empurra para a direita */
+}
+
+.rating-star {
+    color: var(--primary-red); /* Estrela em vermelho para o tema */
+    margin-right: 4px;
+}
+
+/* ABAS DE NAVEGAÇÃO HORIZONTAL */
+.categories-nav {
+    width: 100%;
+    padding: 15px 0; /* Mais padding vertical para espaçamento */
+    background-color: var(--bg-white);
+    overflow-x: auto; 
+    white-space: nowrap; 
+    border-bottom: 1px solid var(--border-light); /* Borda cinza suave */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    position: sticky; /* Tenta fixar as abas ao topo da rolagem */
+    top: 0;
+    z-index: 2; /* Garante que as abas fiquem acima dos produtos */
+}
+
+.categories-scroll {
+    padding: 0 15px;
+}
+
+.category-tab {
+    background-color: var(--bg-white); /* Fundo BRANCO para não ativos */
+    color: var(--text-dark);
+    border: 1px solid var(--border-light); /* Borda sutil nos não ativos */
+    padding: 8px 15px;
+    margin-right: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+/* ABA ATIVA CLONADA: Fundo Amarelo, Borda Amarela (o mais fiel) */
+.category-tab.active {
+    background-color: var(--secondary-yellow); /* Amarelo fiel ao mockup */
+    color: var(--text-dark);
+    border-color: var(--secondary-yellow);
+    font-weight: 600;
+}
+
+/* LISTA DE PRODUTOS */
+.products-list-container {
+    padding: 15px 20px;
+    background-color: var(--bg-white); /* Fundo da lista Branco, não cinza */
+}
+
+.section-title {
+    font-size: 18px; /* Título menor e mais discreto */
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 10px 0 15px 20px;
+}
+
+/* --- ESTILOS CLONADOS DO CARD DE PRODUTO --- */
+
+.product-card {
+    /* O card agora é um container de flexbox para alinhar texto e imagem */
+    display: flex;
+    align-items: flex-start; /* Alinha o conteúdo ao topo (título) */
+    justify-content: space-between;
+    
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-light); /* Borda fina na parte inferior */
+    background-color: var(--bg-white);
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: background-color 0.1s;
+    
+    /* Garante que o texto comece alinhado com o padding do container */
+    padding-left: 0; 
+    padding-right: 0; 
+    margin-left: 20px; /* Alinha o card com o padding do products-list-container */
+    margin-right: 20px;
+    width: calc(100% - 40px); /* Largura total menos margens laterais */
+}
+
+
+
+.product-text-info {
+    /* Contém Título, Descrição e Preço */
+    display: flex;
+    flex-direction: column; /* Conteúdo em coluna */
+    flex-grow: 1;
+    padding-right: 15px; /* Espaço entre o texto e a imagem */
+    
+    /* Alinhamento dos preços (Nova estrutura para clonar o visual) */
+    position: relative; 
+    padding-bottom: 40px; /* Espaço para o preço que vai flutuar abaixo */
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 3px;
+    line-height: 1.3;
+}
+
+.product-description {
+    font-size: 13px;
+    color: var(--text-light);
+    margin: 0 0 5px;
+    /* Restringir o texto a duas linhas (como no mockup) */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a duas linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.product-price {
+    /* O PREÇO É AGORA POSICIONADO ABSOLUTAMENTE PARA CLONAR O ALINHAMENTO */
+    position: absolute;
+    bottom: 10px; /* Distância da borda inferior do card */
+    left: 0;
+    
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark); 
+}
+
+.product-image {
+    /* A imagem é a última a ser desenhada, parece flutuar à direita */
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0; /* Impede que a imagem encolha */
+    
+    /* Margem para simular que a imagem está ligeiramente fora do texto principal */
+    margin-left: auto; /* Empurra para a direita */
+}
+
+/* Remove o padding lateral da products-list-container, pois o padding está no card */
+.products-list-container {
+    padding: 15px 0; /* Ajuste o padding lateral para 0 */
+    background-color: var(--bg-white); 
+}
