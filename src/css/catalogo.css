@@ -181,7 +181,7 @@ body {
     font-size: 18px; /* Título menor e mais discreto */
     font-weight: 700;
     color: var(--text-dark);
-    margin: 10px 0 15px 20px;
+    margin: 10px 0 15px 200px;
 }
 
 /* --- ESTILOS CLONADOS DO CARD DE PRODUTO --- */
