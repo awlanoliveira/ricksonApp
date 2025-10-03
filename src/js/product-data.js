@@ -32,7 +32,7 @@ const productDatabase = {
     "crea203_growth": { // ID ÚNICO!
         nome: "Creatina 250g Growth Supplements",
         preco: "R$ 79,90",
-        imagem: "../img/creatina.webp",
+        imagem: "../img/detailsDesing.png",
         sobre: "Creatina pura com o melhor custo-benefício. Garante o aumento de ATP e performance.",
         ingredientes: [
             "Creatina 100% Pura",
@@ -49,5 +49,16 @@ const productDatabase = {
         imagem: "URL_IMAGEM_PRE_TREINO",
         sobre: "Fórmula avançada com Beta-Alanina e Taurina...",
         ingredientes: ["Beta Alanina", "Taurina", "..."]
+    },
+    // -----------------------------------------------------
+    // 4. ACESSÓRIOS
+    // -----------------------------------------------------
+    
+    "shakerGrowth01": {
+        nome: "Growth Supplements shaker 600 ml",
+        preco: "R$ 99,50",
+        imagem: "../img/ShakerGrowth01detailsDesing.png",
+        sobre: "Com capacidade de 600 mL, é perfeito para preparar e transportar seus shakes de proteína, bebidas isotônicas ou água durante os treinos e atividades diárias.",
+        ingredientes: null
     }
 };

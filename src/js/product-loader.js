@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // C. Mapear e preencher os elementos do HTML
     
     // Cabeçalho e Títulos
+
+    
     document.title = produto.nome + " | Rickson Suplementos";
     document.querySelector('.product-title').textContent = produto.nome;
     document.querySelector('.detail-price').textContent = produto.preco;
@@ -30,15 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Seção Sobre
     document.querySelector('.section-text').textContent = produto.sobre;
     
-    // Seção Ingredientes (Cria a lista dinamicamente)
-    const ingredientsList = document.querySelector('.ingredients-list');
-    ingredientsList.innerHTML = ''; // Limpa a lista existente (do Whey Pro Max)
+    // Seção Ingredientes (Lógica OTIMIZADA para Esconder/Mostrar)
+const ingredientsSection = document.getElementById('ingredients-section');
+const ingredientsList = document.querySelector('.ingredients-list');
+
+// Verifica se a lista de ingredientes existe no banco de dados E tem itens
+if (produto.ingredientes && produto.ingredientes.length > 0) {
+    // Produto TEM ingredientes: preenche e garante visibilidade
+    ingredientsSection.style.display = 'block'; 
+    ingredientsList.innerHTML = ''; 
 
     produto.ingredientes.forEach(item => {
         const li = document.createElement('li');
         li.textContent = item;
         ingredientsList.appendChild(li);
     });
+} else {
+    // Produto NÃO TEM ingredientes (acessório, etc.): esconde a seção
+    // Você precisa ter o ID "ingredients-section" no seu HTML (<section id="ingredients-section">)
+    ingredientsSection.style.display = 'none';
+}
 
     // D. Iniciar o contador (do seu product-detail.js)
     // Se a lógica do contador estiver separada, certifique-se de que ela é chamada aqui,
