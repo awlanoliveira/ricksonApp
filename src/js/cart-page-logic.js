@@ -1,15 +1,15 @@
-// src/js/cart-page-logic.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Elementos do DOM (atualizados para as novas classes/IDs)
+    // 1. Elementos do DOM
     const cartList = document.getElementById('cart-list');
-    const subtotalAmountSpan = document.getElementById('subtotal-amount'); // Novo
-    const deliveryAmountSpan = document.getElementById('delivery-amount'); // Novo
+    const subtotalAmountSpan = document.getElementById('subtotal-amount'); 
+    const deliveryAmountSpan = document.getElementById('delivery-amount'); 
     const totalAmountSpan = document.getElementById('total-amount');
     const emptyMessage = document.getElementById('empty-cart-message');
-    const continueButton = document.getElementById('continue-button'); // Renomeado
+    const checkoutButton = document.getElementById('continue-button'); 
 
-    const DELIVERY_FEE = 5.00; // Taxa de entrega fixa
+    // Configuração do WhatsApp e Taxa (Ajuste o NÚMERO e a TAXA)
+    const STORE_WHATSAPP_NUMBER = '5586995602574'; // Seu número de telefone (Ex: 5511999998888)
+    const DELIVERY_FEE = 5.00;
 
     // Auxiliares de formato
     function priceToNumber(priceString) {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    // 2. Função Principal de Renderização
+    // 2. Função Principal de Renderização (Para exibir os dados e o total)
     function renderCart() {
         if (typeof window.getCart !== 'function') return; 
         
@@ -29,9 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
         cartList.innerHTML = '';
         let subtotal = 0;
 
+        // Lógica de Vazio/Desabilitar Botão
         if (cart.length === 0) {
             emptyMessage.style.display = 'block';
-            continueButton.disabled = true;
+            checkoutButton.disabled = true;
             subtotalAmountSpan.textContent = 'R$ 0,00';
             deliveryAmountSpan.textContent = '+ R$ 0,00';
             totalAmountSpan.textContent = 'R$ 0,00';
@@ -39,35 +40,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         emptyMessage.style.display = 'none';
-        continueButton.disabled = false;
+        checkoutButton.disabled = false;
 
         cart.forEach(item => {
             const itemPriceNum = priceToNumber(item.preco); 
             const itemTotal = itemPriceNum * item.quantidade;
             subtotal += itemTotal;
 
-            // Cria o card visual do item com as NOVAS CLASSES
+            // ESTA É A PARTE ONDE VOCÊ CRIA O HTML DO CARD (MANTIDA)
             const itemDiv = document.createElement('div');
-            itemDiv.classList.add('cart-item-card-cloned');
+            itemDiv.classList.add('cart-item-card');
             
+            const minusButtonHtml = item.quantidade === 1 ?
+                `<button class="remove-btn" data-action="remove" data-id="${item.id}"><i class="fas fa-trash"></i></button>` :
+                `<button class="qty-btn-cloned minus" data-action="decrement" data-id="${item.id}"><i class="fas fa-minus"></i></button>`;
+
             itemDiv.innerHTML = `
-                <div class="item-thumb-name-cloned">
-                    <img src="${item.imagem || 'https://via.placeholder.com/70x70?text=PROD'}" alt="${item.nome}" class="item-image-cloned">
-                    <span class="item-name-cloned">${item.nome}</span>
-                </div>
+                <img src="${item.imagem || 'https://via.placeholder.com/60x60?text=PROD'}" alt="${item.nome}" class="item-thumbnail">
                 
-                <span class="item-price-cloned">${formatCurrency(itemPriceNum * item.quantidade)}</span> <div class="item-controls-actions-cloned">
-                    <div class="qty-control-box-cloned">
-                        <button class="qty-btn-cloned" data-action="decrement" data-id="${item.id}">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <span class="qty-display-cloned">${item.quantidade}</span>
-                        <button class="qty-btn-cloned" data-action="increment" data-id="${item.id}">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="remove-item-x-cloned" data-action="remove" data-id="${item.id}">
-                        <i class="fas fa-times"></i>
+                <div class="item-info">
+                    <span class="item-name">${item.nome}</span>
+                    <span class="item-price-unit">${formatCurrency(itemPriceNum)} un.</span>
+                </div>
+
+                <div class="item-controls">
+                    ${minusButtonHtml}
+                    <span class="item-qty-display">${item.quantidade}</span>
+                    <button class="qty-btn-cloned plus" data-action="increment" data-id="${item.id}">
+                        <i class="fas fa-plus"></i>
                     </button>
                 </div>
             `;
@@ -82,7 +82,54 @@ document.addEventListener('DOMContentLoaded', () => {
         totalAmountSpan.textContent = formatCurrency(totalWithDelivery);
     }
     
-    // 3. Gerenciamento de Eventos (Interação dos Botões)
+    // 3. FINALIZAR PEDIDO (FUNÇÃO CRÍTICA)
+    checkoutButton.addEventListener('click', () => {
+        const cart = window.getCart();
+        
+        if (cart.length === 0) {
+            alert("Carrinho vazio! Adicione itens antes de finalizar.");
+            return;
+        }
+
+        // --- CONSTRUÇÃO DA MENSAGEM FORMATADA PARA O WHATSAPP ---
+        
+        let message = "🛒 *NOVO PEDIDO - RICKSON SUPLEMENTOS*\n\n";
+        let subtotal = 0;
+        
+        cart.forEach((item, index) => {
+            const itemPriceNum = priceToNumber(item.preco);
+            const itemTotal = itemPriceNum * item.quantidade;
+            subtotal += itemTotal;
+            
+            // Item: 1. 2x Whey Pro Max (R$ 279,80)
+            message += `${index + 1}. ${item.quantidade}x ${item.nome} (${formatCurrency(itemPriceNum)} un.)\n`;
+        });
+        
+        const totalValue = subtotal + DELIVERY_FEE;
+        
+        message += "\n--------------------------------------\n";
+        message += `Subtotal: ${formatCurrency(subtotal)}\n`;
+        message += `Entrega: ${formatCurrency(DELIVERY_FEE)}\n`;
+        message += `*TOTAL GERAL: ${formatCurrency(totalValue)}*\n`;
+        message += "--------------------------------------\n";
+        message += "\nOlá, por favor, confirme os detalhes de entrega e pagamento. Obrigado!";
+
+        // Codifica a mensagem para ser segura na URL
+        const encodedMessage = encodeURIComponent(message);
+        
+        // Constrói a URL final do WhatsApp
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${STORE_WHATSAPP_NUMBER}&text=${encodedMessage}`;
+
+        // 4. Limpa o carrinho e redireciona (a ação final)
+        window.clearCart(); 
+        window.open(whatsappUrl, '_blank'); // Abre em nova aba
+
+        // Feedback
+        alert("✅ Pedido enviado! Verifique o WhatsApp para finalizar a compra.");
+        renderCart(); 
+    });
+
+    // 5. Gerenciamento de Eventos (Botões de + / - / Lixeira)
     cartList.addEventListener('click', (e) => {
         const target = e.target.closest('button');
         if (!target) return;
@@ -90,11 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const action = target.getAttribute('data-action');
         const productId = target.getAttribute('data-id');
         
-        if (!productId || !action || !window.updateItemQuantity) return;
+        if (!productId || !action || typeof window.updateItemQuantity !== 'function') return;
 
         const currentCart = window.getCart();
         const currentItem = currentCart.find(item => item.id === productId);
-        let newQty = currentItem ? currentItem.quantidade : 0;
+
+        if (!currentItem) return;
+
+        let newQty = currentItem.quantidade;
 
         if (action === 'increment') {
             newQty++;
@@ -106,18 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.removeFromCart(productId);
         }
         
-        renderCart(); // Recarrega a lista após a mudança
-    });
-
-    // 4. Botão "Continuar" (Renomeado)
-    continueButton.addEventListener('click', () => {
-        if (window.getCart().length > 0) {
-            alert(`✅ Pedido Confirmado! Total: ${totalAmountSpan.textContent}. Prosseguindo para o pagamento...`);
-            // Aqui você adicionaria a lógica para a próxima etapa (Ex: redirecionar)
-            // window.location.href = 'pagina-pagamento.html'; 
-            window.clearCart(); // Limpa o carrinho após "finalizar"
-            renderCart(); // Renderiza para mostrar o carrinho vazio
-        }
+        renderCart(); 
     });
 
     // Chamada inicial

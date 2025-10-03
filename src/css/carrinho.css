@@ -24,261 +24,208 @@ body {
 /* ========================================================= */
 
 /* --- HEADER CLONADO --- */
-.cart-header-cloned {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
+/* HEADER (Correção de Alinhamento) */
+.cart-header {
     background-color: var(--bg-white);
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); /* Sombra sutil */
-    position: sticky;
-    top: 0;
-    z-index: 50;
-}
-
-.back-link-cloned {
-    font-size: 24px;
-    color: var(--text-dark); /* Seta preta */
-    text-decoration: none;
-}
-
-.progress-bar-cloned {
+    padding: 15px 20px;
     display: flex;
-    gap: 8px; /* Espaço entre os steps */
-}
-
-.progress-bar-cloned .step {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: var(--border-light); /* Cinza claro */
-    color: var(--text-dark);
-    display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 14px;
-    font-weight: 600;
-    border: 1px solid var(--border-light);
-    transition: all 0.2s ease;
+    position: relative; 
+    border-bottom: 1px solid var(--border-light);
+    justify-content: center; /* Centraliza o título */
 }
 
-.progress-bar-cloned .step.active {
-    background-color: var(--primary-red); /* Step ativo em VERMELHO */
-    color: var(--bg-white);
-    border-color: var(--primary-red);
+/* Seta de Voltar: Posição absoluta para não mover o título */
+.cart-header .back-link-icon {
+    position: absolute; 
+    left: 20px;
+    font-size: 24px; 
+    color: var(--primary-red); 
+    text-decoration: none;
+    z-index: 10;
+    top: 50%; 
+    transform: translateY(-50%); /* Centralização vertical precisa */
 }
 
-.close-btn-cloned {
-    background: none;
-    border: none;
-    color: var(--text-dark);
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.2s;
-}
-.close-btn-cloned:hover {
-    background-color: var(--bg-light);
+.page-title-header {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0; 
 }
 
-/* --- MAIN CONTENT (Lista de Itens) --- */
-.cart-main-content-cloned {
+/* MAIN CONTENT (Lista de Itens) */
+.cart-main-content {
     flex-grow: 1;
-    background-color: var(--bg-light); /* Fundo cinza para a área principal */
-    padding: 20px;
+    background-color: var(--bg-light); 
+    padding: 20px 20px 10px 20px;
 }
 
-.section-title-cloned {
+.section-title {
     font-size: 20px;
     font-weight: 700;
     color: var(--text-dark);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-.empty-message-cloned {
+.empty-message {
+    padding: 40px 20px;
     text-align: center;
     color: var(--text-light);
-    padding: 40px 20px;
-    background-color: var(--bg-white);
+    font-size: 16px;
+    background-color: var(--bg-white); 
     border-radius: 8px;
-    margin-top: 10px;
 }
 
 
-/* CARD DE ITEM DO CARRINHO (CLONADO E RESPONSIVO) */
-.cart-item-card-cloned {
+/* --- RODAPÉ FIXO (Alinhamento de Valores) --- */
+.checkout-footer-fixed {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--bg-white);
+    padding: 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 30;
+    box-sizing: border-box;
+}
+
+/* Linhas de Detalhes (Subtotal/Entrega) */
+.summary-line-detail {
+    display: flex; /* FORÇA DUAS COLUNAS */
+    justify-content: space-between; 
+    align-items: baseline;
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: var(--text-light);
+}
+
+/* Linha de Total Final (Destacada) */
+.summary-total-final {
+    display: flex; /* FORÇA DUAS COLUNAS */
+    justify-content: space-between; 
+    align-items: baseline;
+    margin-bottom: 20px;
+    padding-top: 10px; 
+    border-top: 1px solid var(--border-light); 
+}
+
+.total-label-final {
+    font-weight: 700;
+    font-size: 18px; 
+    color: var(--text-dark);
+}
+
+.total-value-final {
+    font-weight: 900;
+    font-size: 26px;
+    color: var(--primary-red); 
+}
+
+/* Botão de Ação */
+.btn-checkout-primary {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-red); 
+    color: var(--bg-white);
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-checkout-primary:disabled {
+    background-color: var(--text-light);
+    cursor: not-allowed;
+}
+
+/* --- ESTILO DOS CARDS DE ITENS --- */
+
+.cart-item-card { 
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 15px;
     background-color: var(--bg-white);
-    padding: 15px;
-    margin-bottom: 12px;
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); /* Sombra mais leve */
-    gap: 10px; /* Espaçamento entre colunas */
-    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.item-thumb-name-cloned {
-    display: flex;
-    align-items: center;
-    flex: 1 1 50%; /* Ocupa mais da metade da largura em telas pequenas */
-    min-width: 180px; /* Garante que não fique muito pequeno */
-}
-
-.item-image-cloned {
-    width: 70px; /* Imagem um pouco maior */
-    height: 70px;
+.item-thumbnail {
+    width: 60px;
+    height: 60px;
     border-radius: 4px;
-    object-fit: cover;
     margin-right: 15px;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
-.item-name-cloned {
+.item-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name {
     font-weight: 600;
     font-size: 15px;
     color: var(--text-dark);
-    line-height: 1.3;
 }
 
-.item-price-cloned {
+.item-price-unit {
+    font-size: 14px;
+    color: var(--primary-red); 
     font-weight: 700;
-    font-size: 16px;
-    color: var(--text-dark); /* Preço do item agora em PRETO */
-    flex: 1 1 30%; /* Ocupa menos espaço que o nome */
-    text-align: right;
+    margin-top: 2px;
 }
 
-.item-controls-actions-cloned {
+.item-controls {
     display: flex;
     align-items: center;
-    flex: 1 1 100%; /* Ocupa linha inteira em mobile */
-    justify-content: flex-end; /* Alinha à direita quando em nova linha */
-    margin-top: 10px; /* Espaço do nome/preço */
-    gap: 8px; /* Espaço entre controles e 'X' */
-
-    /* RESPONSIVIDADE: Em telas maiores, coloca na mesma linha */
-    @media (min-width: 375px) { /* Ajuste este breakpoint conforme necessário */
-        flex: 1 1 auto; /* Volta a ser flexível */
-        justify-content: flex-end; /* Mantém alinhado à direita */
-        margin-top: 0;
-    }
-}
-
-.qty-control-box-cloned {
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--border-light); /* Borda cinza */
-    border-radius: 8px; /* Cantos arredondados */
-    overflow: hidden; /* Garante que os botões fiquem dentro da borda */
+    flex-shrink: 0;
 }
 
 .qty-btn-cloned {
-    background-color: var(--bg-white);
+    background-color: var(--bg-light);
     border: none;
     color: var(--text-dark);
     padding: 8px 10px;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 35px;
-    height: 35px;
-    transition: background-color 0.2s;
-}
-.qty-btn-cloned:hover {
-    background-color: var(--bg-light);
 }
 
-.qty-display-cloned {
+.qty-btn-cloned.plus {
+    background-color: var(--primary-red);
+    color: var(--bg-white);
+    margin-left: 5px;
+}
+
+.item-qty-display {
     font-weight: 600;
     font-size: 16px;
-    color: var(--text-dark);
     padding: 0 10px;
+    color: var(--text-dark);
 }
 
-.remove-item-x-cloned {
-    background-color: var(--primary-red); /* "X" de remover em VERMELHO */
+.remove-btn {
+    background-color: var(--primary-red);
     color: var(--bg-white);
     border: none;
     width: 35px;
     height: 35px;
-    border-radius: 50%; /* Botão redondo */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-.remove-item-x-cloned:hover {
-    background-color: #c42418; /* Vermelho mais escuro no hover */
-}
-
-
-/* --- FOOTER CLONADO --- */
-.cart-footer-cloned {
-    background-color: var(--bg-white);
-    padding: 20px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    max-width: 400px;
-    box-sizing: border-box;
-}
-
-.summary-details-cloned {
-    margin-bottom: 20px;
-}
-
-.summary-line-cloned {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    font-size: 15px;
-    color: var(--text-dark);
-}
-
-.summary-total-cloned {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-dark);
-}
-
-/* O valor total "R$ 419,99" */
-.summary-total-cloned #total-amount {
-    font-size: 24px; /* Maior e mais destacado */
-    font-weight: 900;
-    color: var(--primary-red); /* VERMELHO de destaque */
-}
-
-/* Botão "Continuar" */
-.btn-continue-cloned {
-    width: 100%;
-    padding: 15px;
-    background-color: var(--primary-red); /* VERMELHO */
-    color: var(--bg-white);
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-.btn-continue-cloned:hover {
-    background-color: #c42418; /* Vermelho mais escuro no hover */
-}
-.btn-continue-cloned:disabled {
-    background-color: var(--border-light); /* Cinza claro quando desativado */
-    color: var(--text-light);
-    cursor: not-allowed;
+    margin-right: 10px; 
+    font-size: 14px;
+    flex-shrink: 0;
 }

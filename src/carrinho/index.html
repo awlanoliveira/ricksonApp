@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sua Sacola | Rickson Suplementos</title>
     
+    <!-- ATENÇÃO: Verifique se o caminho do CSS está correto -->
     <link rel="stylesheet" href="src/css/styles.css"> 
     <link rel="stylesheet" href="../css/carrinho.css">
     
@@ -15,39 +16,47 @@
 
     <div class="app-container">
         
-        <header class="cart-header-cloned">
-            <a href="../catalogo/index.html" class="back-link-cloned"><i class="fas fa-arrow-left"></i></a>
+        <!-- HEADER PADRÃO E ALINHADO -->
+        <header class="cart-header">
+            <!-- Seta de Voltar (Absoluta) -->
+            <a href="../catalogo/index.html" class="back-link-icon"><i class="fas fa-arrow-left"></i></a>
+            <!-- Título Central -->
+            <h1 class="page-title-header">Sua Sacola</h1>
         </header>
 
-        <main class="cart-main-content-cloned">
-            <h2 class="section-title-cloned">Seu carrinho:</h2>
-            <div id="cart-list" class="items-list-cloned">
+        <main class="cart-main-content">
+            <h2 class="section-title">Seu carrinho:</h2>
+            <div id="cart-list" class="items-list">
                 </div>
-            <p id="empty-cart-message" class="empty-message-cloned">Sua sacola está vazia!</p>
+            <p id="empty-cart-message" class="empty-message">Sua sacola está vazia!</p>
         </main>
 
-        <footer class="cart-footer-cloned">
-            <div class="summary-details-cloned">
-                <div class="summary-line-cloned">
+        <footer class="cart-footer-fixed">
+            <!-- LINHAS DE DETALHES -->
+            <div class="summary-line-wrapper">
+                <div class="summary-line-detail">
                     <span>Subtotal:</span>
                     <span id="subtotal-amount">R$ 0,00</span>
                 </div>
-                <div class="summary-line-cloned">
+                <div class="summary-line-detail">
                     <span>Entrega:</span>
                     <span id="delivery-amount">+ R$ 5,00</span>
                 </div>
-                <div class="summary-total-cloned">
-                    <span>Total:</span>
-                    <span id="total-amount">R$ 0,00</span>
-                </div>
             </div>
             
-            <button id="continue-button" class="btn-continue-cloned" disabled>
-                finalizar compra
+            <!-- LINHA DE TOTAL FINAL -->
+            <div class="summary-total-final">
+                <span class="total-label-final">Total:</span>
+                <span id="total-amount" class="total-value-final">R$ 0,00</span>
+            </div>
+            
+            <button id="continue-button" class="btn-checkout-primary" disabled>
+                Finalizar Pedido
             </button>
         </footer>
     </div>
 
+    <!-- SCRIPTS ESSENCIAIS (Caminhos Corrigidos) -->
     <script src="../js/cart-module.js"></script>
     <script src="../js/cart-page-logic.js"></script> 
 </body>
