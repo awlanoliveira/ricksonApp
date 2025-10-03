@@ -5,158 +5,280 @@
     --bg-light: #f7f7f7;        /* Fundo Cinza Claro do Corpo do App */
     --bg-white: #ffffff;        /* Branco Puro para Cards e Listas */
     --border-light: #e0e0e0;     /* Linhas Divisórias Suaves */
+    --font-family: 'Poppins', sans-serif; 
 }
 
-/* HEADER (Alinhamento central e fundo branco) */
-.cart-page-header {
-    background-color: var(--bg-white);
+body {
+    font-family: var(--font-family)
+}
+/* HEADER */
+/* ========================================================= */
+/* CARRINHO.CSS - ESTILIZAÇÃO COMPLETA E CORRIGIDA */
+/* ========================================================= */
+
+/* Nota: As variáveis de cor (var(--primary-red), etc.) devem estar definidas no styles.css ou no head do HTML. */
+
+/* HEADER (Correção de Alinhamento) */
+/* ========================================================= */
+/* src/css/carrinho.css - CLONE DO MOCKUP COM SUAS CORES */
+/* ========================================================= */
+
+/* --- HEADER CLONADO --- */
+.cart-header-cloned {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.cart-page-header .back-link-icon {
-    font-size: 20px;
-    color: var(--text-dark);
-    text-decoration: none;
-    margin-right: 20px;
-}
-
-.page-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0 auto; /* Centraliza o título */
-}
-
-/* LISTA DE ITENS (Containers) */
-.cart-items-container {
-    flex-grow: 1;
-    padding: 10px 20px;
     background-color: var(--bg-white);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
 
-/* Card de Item Individual (Clonado: Alinhamento, Sombra e Fundo Branco) */
-.cart-item-card {
+.back-link-cloned {
+    font-size: 24px;
+    color: var(--text-dark); /* Seta preta */
+    text-decoration: none;
+}
+
+.progress-bar-cloned {
     display: flex;
+    gap: 8px; /* Espaço entre os steps */
+}
+
+.progress-bar-cloned .step {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--border-light); /* Cinza claro */
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 10px;
-    margin: 15px 0;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+}
+
+.progress-bar-cloned .step.active {
+    background-color: var(--primary-red); /* Step ativo em VERMELHO */
+    color: var(--bg-white);
+    border-color: var(--primary-red);
+}
+
+.close-btn-cloned {
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+.close-btn-cloned:hover {
+    background-color: var(--bg-light);
+}
+
+/* --- MAIN CONTENT (Lista de Itens) --- */
+.cart-main-content-cloned {
+    flex-grow: 1;
+    background-color: var(--bg-light); /* Fundo cinza para a área principal */
+    padding: 20px;
+}
+
+.section-title-cloned {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.empty-message-cloned {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px 20px;
     background-color: var(--bg-white);
     border-radius: 8px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08); /* Sombra suave para flutuar */
+    margin-top: 10px;
 }
 
-.item-thumbnail {
-    width: 50px;
-    height: 50px;
-    border-radius: 4px;
-    margin-right: 15px;
-    object-fit: cover;
-}
 
-.item-info {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.item-name {
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--text-dark);
-}
-
-.item-price-unit {
-    font-size: 14px;
-    color: var(--primary-red); /* Preço por Unidade em VERMELHO */
-    font-weight: 500;
-}
-
-/* CONTROLES DE QUANTIDADE (CLONADO E CORRIGIDO) */
-.item-controls {
+/* CARD DE ITEM DO CARRINHO (CLONADO E RESPONSIVO) */
+.cart-item-card-cloned {
     display: flex;
     align-items: center;
-    background-color: var(--bg-light); /* Fundo cinza claro para a área do controle */
-    border-radius: 20px; /* Borda arredondada no controle */
-    overflow: hidden;
-    flex-shrink: 0;
+    justify-content: space-between;
+    background-color: var(--bg-white);
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); /* Sombra mais leve */
+    gap: 10px; /* Espaçamento entre colunas */
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+}
+
+.item-thumb-name-cloned {
+    display: flex;
+    align-items: center;
+    flex: 1 1 50%; /* Ocupa mais da metade da largura em telas pequenas */
+    min-width: 180px; /* Garante que não fique muito pequeno */
+}
+
+.item-image-cloned {
+    width: 70px; /* Imagem um pouco maior */
+    height: 70px;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.item-name-cloned {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+.item-price-cloned {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-dark); /* Preço do item agora em PRETO */
+    flex: 1 1 30%; /* Ocupa menos espaço que o nome */
+    text-align: right;
+}
+
+.item-controls-actions-cloned {
+    display: flex;
+    align-items: center;
+    flex: 1 1 100%; /* Ocupa linha inteira em mobile */
+    justify-content: flex-end; /* Alinha à direita quando em nova linha */
+    margin-top: 10px; /* Espaço do nome/preço */
+    gap: 8px; /* Espaço entre controles e 'X' */
+
+    /* RESPONSIVIDADE: Em telas maiores, coloca na mesma linha */
+    @media (min-width: 375px) { /* Ajuste este breakpoint conforme necessário */
+        flex: 1 1 auto; /* Volta a ser flexível */
+        justify-content: flex-end; /* Mantém alinhado à direita */
+        margin-top: 0;
+    }
+}
+
+.qty-control-box-cloned {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-light); /* Borda cinza */
+    border-radius: 8px; /* Cantos arredondados */
+    overflow: hidden; /* Garante que os botões fiquem dentro da borda */
 }
 
 .qty-btn-cloned {
-    background-color: var(--bg-light); 
+    background-color: var(--bg-white);
     border: none;
     color: var(--text-dark);
     padding: 8px 10px;
     cursor: pointer;
     font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
     transition: background-color 0.2s;
 }
-
-.qty-btn-cloned.plus {
-    background-color: var(--primary-red); /* Botão '+' em VERMELHO */
-    color: var(--bg-white);
+.qty-btn-cloned:hover {
+    background-color: var(--bg-light);
 }
 
-.item-qty {
+.qty-display-cloned {
     font-weight: 600;
     font-size: 16px;
-    padding: 0 10px;
     color: var(--text-dark);
+    padding: 0 10px;
 }
 
-.remove-btn {
-    /* Botão de Remover (Lixeira) */
-    background: none;
+.remove-item-x-cloned {
+    background-color: var(--primary-red); /* "X" de remover em VERMELHO */
+    color: var(--bg-white);
     border: none;
-    color: var(--primary-red);
-    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; /* Botão redondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 18px;
-    padding: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.remove-item-x-cloned:hover {
+    background-color: #c42418; /* Vermelho mais escuro no hover */
 }
 
-/* RODAPÉ E FINALIZAÇÃO */
-.checkout-footer {
+
+/* --- FOOTER CLONADO --- */
+.cart-footer-cloned {
+    background-color: var(--bg-white);
+    padding: 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     bottom: 0;
     width: 100%;
     max-width: 400px;
-    background-color: var(--bg-white);
-    padding: 20px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 30;
     box-sizing: border-box;
 }
 
-.total-area-cloned {
+.summary-details-cloned {
     margin-bottom: 20px;
-    line-height: 1.2;
-    text-align: left; /* Garante que o texto comece à esquerda */
 }
 
-.total-label-cloned {
-    font-weight: 500;
-    font-size: 16px;
+.summary-line-cloned {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 15px;
     color: var(--text-dark);
-    display: block;
 }
 
-.total-value-cloned {
-    font-weight: 800;
-    font-size: 26px;
-    color: var(--primary-red); /* Valor Total em VERMELHO */
-    display: block;
+.summary-total-cloned {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
 }
 
-.btn-checkout-primary {
+/* O valor total "R$ 419,99" */
+.summary-total-cloned #total-amount {
+    font-size: 24px; /* Maior e mais destacado */
+    font-weight: 900;
+    color: var(--primary-red); /* VERMELHO de destaque */
+}
+
+/* Botão "Continuar" */
+.btn-continue-cloned {
     width: 100%;
     padding: 15px;
-    background-color: var(--primary-red); /* Botão Principal em VERMELHO */
+    background-color: var(--primary-red); /* VERMELHO */
     color: var(--bg-white);
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-continue-cloned:hover {
+    background-color: #c42418; /* Vermelho mais escuro no hover */
+}
+.btn-continue-cloned:disabled {
+    background-color: var(--border-light); /* Cinza claro quando desativado */
+    color: var(--text-light);
+    cursor: not-allowed;
 }

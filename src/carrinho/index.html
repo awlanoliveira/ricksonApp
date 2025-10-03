@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Sacola | Rickson Suplementos</title>
+    
+    <link rel="stylesheet" href="src/css/styles.css"> 
+    <link rel="stylesheet" href="../css/carrinho.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <header class="cart-header-cloned">
+            <a href="../catalogo/index.html" class="back-link-cloned"><i class="fas fa-arrow-left"></i></a>
+        </header>
+
+        <main class="cart-main-content-cloned">
+            <h2 class="section-title-cloned">Seu carrinho:</h2>
+            <div id="cart-list" class="items-list-cloned">
+                </div>
+            <p id="empty-cart-message" class="empty-message-cloned">Sua sacola está vazia!</p>
+        </main>
+
+        <footer class="cart-footer-cloned">
+            <div class="summary-details-cloned">
+                <div class="summary-line-cloned">
+                    <span>Subtotal:</span>
+                    <span id="subtotal-amount">R$ 0,00</span>
+                </div>
+                <div class="summary-line-cloned">
+                    <span>Entrega:</span>
+                    <span id="delivery-amount">+ R$ 5,00</span>
+                </div>
+                <div class="summary-total-cloned">
+                    <span>Total:</span>
+                    <span id="total-amount">R$ 0,00</span>
+                </div>
+            </div>
+            
+            <button id="continue-button" class="btn-continue-cloned" disabled>
+                finalizar compra
+            </button>
+        </footer>
+    </div>
+
+    <script src="../js/cart-module.js"></script>
+    <script src="../js/cart-page-logic.js"></script> 
+</body>
+</html>
