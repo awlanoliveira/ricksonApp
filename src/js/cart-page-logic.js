@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkoutButton = document.getElementById('continue-button'); 
 
     // Configuração do WhatsApp e Taxa (Ajuste o NÚMERO e a TAXA)
-    const STORE_WHATSAPP_NUMBER = '5586995602574'; // Seu número de telefone (Ex: 5511999998888)
+    const STORE_WHATSAPP_NUMBER = '5586994936596'; // Seu número de telefone (Ex: 5511999998888)
     const DELIVERY_FEE = 5.00;
 
     // Auxiliares de formato
