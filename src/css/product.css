@@ -1,0 +1,194 @@
+/* ========================================================= */
+/* 1. DEFINIÇÕES GLOBAIS E ESTRUTURA BASE (produto.html) */
+/* ========================================================= */
+:root {
+    /* Paleta para Tela de Detalhes */
+    --primary-red: #da291c;     /* Vermelho de Destaque/Ação (para botão e ícones) */
+    --text-dark: #1a1a1a;       /* Preto para Títulos e Preço */
+    --text-light: #666666;       /* Cinza Escuro para Descrições */
+    --bg-white: #ffffff;        /* Fundo do App/Seções */
+    --border-light: #e0e0e0;     /* Linhas Divisórias Suaves */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: #f0f0f0; /* Fundo cinza suave */
+}
+
+.app-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--bg-white);
+    min-height: 100vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* 2. HEADER (Imagem e Ícones Sobrepostos) */
+.detail-header {
+    position: relative;
+    width: 100%;
+    height: 250px; /* Altura da imagem de destaque */
+    overflow: hidden; 
+}
+
+.detail-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ícones de Voltar e Carrinho */
+.detail-icon {
+    position: absolute;
+    top: 20px;
+    font-size: 20px;
+    color: var(--bg-white);
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo preto semi-transparente */
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    text-decoration: none;
+}
+
+.back-icon { left: 20px; }
+.cart-icon { right: 20px; }
+
+
+/* 3. CONTEÚDO PRINCIPAL E INFORMAÇÕES */
+.detail-content {
+    padding: 0 20px;
+    padding-bottom: 100px; /* Espaço para o rodapé fixo */
+}
+
+.product-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 10px 0 10px;
+}
+
+.detail-info-top {
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+/* Preço e Contador (CLONADO DO MOCKUP) */
+.price-and-quantity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-light); /* Borda fina clara em volta de TUDO */
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.quantity-btn {
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.1s;
+}
+
+.minus-btn {
+    background-color: var(--bg-white);
+    color: var(--text-light); /* Ícone de menos mais discreto (cinza) */
+}
+
+.plus-btn {
+    background-color: var(--primary-red); /* Botão de destaque em Vermelho */
+    color: var(--bg-white);
+}
+
+.current-qty {
+    padding: 0 15px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Seções Sobre / Ingredientes */
+.section-title-small {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 15px 0 10px;
+}
+
+.section-text {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Lista de Ingredientes (Bolinhas em Vermelho) */
+.ingredients-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+.ingredients-list li {
+    padding: 5px 0;
+    position: relative;
+    padding-left: 15px;
+}
+
+.ingredients-list li::before {
+    content: "•";
+    color: var(--primary-red);
+    font-weight: 900;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* 4. RODAPÉ FIXO (Botão Adicionar) */
+.detail-footer-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--bg-white);
+    padding: 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 30;
+    box-sizing: border-box;
+}
+
+.btn-add-to-cart {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-red); 
+    color: var(--bg-white);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+}
